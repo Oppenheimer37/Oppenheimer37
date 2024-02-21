@@ -1,0 +1,55 @@
+class Robot:
+    def __init__(self):
+        self.position = 0  # Robot's position
+        self.battery_level = 100  # Battery level in percentage
+
+    def move_forward(self, distance):
+        if self.battery_level > 0:
+            self.position += distance
+            self.battery_level -= 1  # Consume battery power
+            print(f"Robot moved forward by {distance} units. New position: {self.position}")
+        else:
+            print("Battery is too low. Please charge the robot.")
+
+    def move_backward(self, distance):
+        if self.battery_level > 0:
+            self.position -= distance
+            self.battery_level -= 1  # Consume battery power
+            print(f"Robot moved backward by {distance} units. New position: {self.position}")
+        else:
+            print("Battery is too low. Please charge the robot.")
+
+    def stop(self):
+        print("Robot stopped.")
+
+    def charge_battery(self):
+        self.battery_level = 100
+        print("Robot's battery is fully charged.")
+
+# User input for testing
+if __name__ == "__main__":
+    robot = Robot()
+    while True:
+        print("1. Move Forward")
+        print("2. Move Backward")
+        print("3. Stop")
+        print("4. Charge Battery")
+        print("5. Exit")
+
+        choice = input("Please select an action: ")
+
+        if choice == "1":
+            distance = int(input("How many units do you want to move forward? "))
+            robot.move_forward(distance)
+        elif choice == "2":
+            distance = int(input("How many units do you want to move backward? "))
+            robot.move_backward(distance)
+        elif choice == "3":
+            robot.stop()
+        elif choice == "4":
+            robot.charge_battery()
+        elif choice == "5":
+            print("Exiting the program...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
